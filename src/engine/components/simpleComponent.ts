@@ -1,18 +1,17 @@
 import Component from "../base/component";
-import IUpdating from '../base/updating';
+import IUpdating from "../base/updating";
+import Player from "../player/player";
 
-export default class SimpleComponent implements Component, IUpdating {
-    name: string = "SimpleComponent";  
-
-    onBegin(): void {
-        
+export default class SimpleComponent extends Component {
+    public readonly name: string = "SimpleComponent";
+    
+    constructor(_player: Player) {
+        super();
     }
 
-    onButtonDown(keyCode: string): void {
-        
-    }
+    public onBegin(): void {}
 
-    onUpdate(delta: number): void {
-        console.log("SimpleComponent is working!");
-    }
+    public onButtonDown(keyCode: string): void {}
+
+    public onUpdate(delta: number): void {}
 }

@@ -16,4 +16,6 @@ export default interface IUpdating {
     *}
     */
     onButtonDown(keyCode: string): void;
+
+    onMouseMove(x: number, y: number): void;
 }

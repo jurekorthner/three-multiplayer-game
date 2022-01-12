@@ -7,10 +7,10 @@ interface IGameManager {
     registerObject(obj: GameObject): number;
     Update(delta: number): void;
     Begin(): void;
-    refreshInput(): void;
+    handleButtonDown(keyCode: string): void;
 }
 
-export default class GameManager implements IGameManager {   
+export default class GameManager implements IGameManager {     
     objects: GameObject[] = [];
     scene: Scene;
 
@@ -18,12 +18,14 @@ export default class GameManager implements IGameManager {
         this.scene = scene;
         console.log("Instantiated GameManager");
     }
+
     Update(delta: number): void {
         this.objects.forEach(obj => {            
             obj.onUpdate(delta);
-            obj.updateComponents();
+            obj.updateComponents(delta);
         });
     }
+
     Begin(): void {
         this.objects.forEach(obj => {            
             obj.onBegin();
@@ -42,7 +44,21 @@ export default class GameManager implements IGameManager {
         })
     }
 
-    refreshInput() {
-        
+    handleButtonDown(keyCode: string): void {        
+        this.objects.forEach(obj => {                          
+            obj.onButtonDown(keyCode);
+        })
     }   
+
+    handleButtonUp(keyCode: string): void {
+        this.objects.forEach(obj => {
+            obj.onButtonUp(keyCode);
+        })
+    }
+
+    handleMouseMove(x: number, y: number): void {
+        this.objects.forEach(obj => {
+            obj.onMouseMove(x, y);
+        })
+    }
 }
