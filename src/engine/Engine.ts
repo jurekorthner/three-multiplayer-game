@@ -7,7 +7,8 @@ import {
 } from "three";
 import GameManager from "./base/gameManager";
 import SimpleComponent from "./components/simpleComponent";
-import Player from "./player/player";
+import { GroundPlane } from "./objects/environment";
+import Player from "./objects/player";
 
 export class Engine {
     private readonly Clock: Clock = new Clock();
@@ -21,6 +22,7 @@ export class Engine {
 
     // Create Player Object
     private player: Player = new Player("player");
+    private groundPlane: GroundPlane = new GroundPlane("groundPlane01");
 
     private simpleComponent: SimpleComponent = new SimpleComponent(this.player);
 
@@ -29,6 +31,7 @@ export class Engine {
 
         this.player.addComponent(this.simpleComponent);      
         this.gameManager.registerObject(this.player);
+        this.gameManager.registerObject(this.groundPlane);
 
         // Init camera
         this.player.camera.position.set(3, 3, 3);

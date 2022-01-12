@@ -30,17 +30,13 @@ export default class Player extends GameObject {
         0.1,
         10000
     );
-
-    constructor(name: string) {
-        super(name);
-    }
-
+    
     onBegin(): void {
         this.add(this.mesh);
     }
 
     onUpdate(delta: number): void {
-        //this.rotateX(0.02);
+        this.rotateX(0.02);
         //this.position.setX(this.nextPos);
     }
 
@@ -67,7 +63,7 @@ export default class Player extends GameObject {
     }
 
     onMouseMove(x: number, y: number): void {
-        this.camera.rotateOnAxis(new Vector3(0, -1, 0), x*0.001);
-        this.camera.rotateOnAxis(new Vector3(-1, 0, 0), y*0.001);
+        this.camera.rotateOnWorldAxis(new Vector3(0, -1, 0), x*0.001);
+        //this.camera.rotateOnWorldAxis(new Vector3(-1, 0, 0), y*0.001);
     }
 }

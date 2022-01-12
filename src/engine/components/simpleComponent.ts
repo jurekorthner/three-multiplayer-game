@@ -1,6 +1,6 @@
 import Component from "../base/component";
 import IUpdating from "../base/updating";
-import Player from "../player/player";
+import Player from "../objects/player";
 
 export default class SimpleComponent extends Component {
     public readonly name: string = "SimpleComponent";
