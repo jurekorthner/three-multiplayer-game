@@ -70,8 +70,12 @@ export default class Player extends GameObject {
         }
     }
 
-    onMouseMove(x: number, y: number): void {    
-        this.camera.rotateX(-y * 0.001)
-        this.camera.rotateY(x* 0.001);
+    onMouseMove(x: number, y: number): void {  
+        console.log(x, ' | ', y);  
+        console.log(this.camera.rotation.x)
+        this.camera.setRotationFromEuler(new Euler(this.camera.rotation.x + y * 0.001, this.camera.rotation.y + x * 0.001, this.camera.rotation.z));
+        console.log(this.camera.rotation);
+        //this.camera.rotateX(-y * 0.001)
+        //this.camera.rotateY(x* 0.001);
     }
 }
