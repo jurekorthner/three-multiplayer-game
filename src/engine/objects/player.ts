@@ -2,6 +2,7 @@ import GameObject from "../base/gameObject";
 import {
     BoxGeometry,
     BufferGeometry,
+    Euler,
     Material,
     Mesh,
     MeshBasicMaterial,
@@ -33,10 +34,11 @@ export default class Player extends GameObject {
     
     onBegin(): void {
         this.add(this.mesh);
+        this.add(this.camera);
     }
 
     onUpdate(delta: number): void {
-        this.rotateX(0.02);
+        //this.rotateX(0.02);
         //this.position.setX(this.nextPos);
     }
 
@@ -63,7 +65,7 @@ export default class Player extends GameObject {
     }
 
     onMouseMove(x: number, y: number): void {
-        this.camera.rotateOnWorldAxis(new Vector3(0, -1, 0), x*0.001);
+        console.log(this.camera.rotation);
         //this.camera.rotateOnWorldAxis(new Vector3(-1, 0, 0), y*0.001);
     }
 }

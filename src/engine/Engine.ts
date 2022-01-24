@@ -33,10 +33,6 @@ export class Engine {
         this.gameManager.registerObject(this.player);
         this.gameManager.registerObject(this.groundPlane);
 
-        // Init camera
-        this.player.camera.position.set(3, 3, 3);
-        this.player.camera.lookAt(new Vector3(0, 0, 0));
-
         // Init renderer
         this.renderer.setSize(innerWidth, innerHeight);
         this.renderer.setClearColor(new Color("rgb(0,0,0)"));

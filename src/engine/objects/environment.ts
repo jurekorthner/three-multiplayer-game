@@ -12,7 +12,7 @@ export class GroundPlane extends GameObject {
     }
 }
 
-export class sunLight extends GameObject {
+export class SunLight extends GameObject {
     private light = new AmbientLight(0xffffff, 1);
 
     onBegin(): void {
