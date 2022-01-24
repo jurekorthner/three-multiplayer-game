@@ -33,12 +33,14 @@ export class Engine {
         this.gameManager.registerObject(this.player);
         this.gameManager.registerObject(this.groundPlane);
 
+        // Call Begin method on Game Manager
+        this.gameManager.Begin();
+
+        this.player.position.set(0, 10, 0);
+
         // Init renderer
         this.renderer.setSize(innerWidth, innerHeight);
         this.renderer.setClearColor(new Color("rgb(0,0,0)"));
-
-        // Call Begin method on Game Manager
-        this.gameManager.Begin();
 
         this.render();
     }
@@ -54,6 +56,6 @@ export class Engine {
         requestAnimationFrame(() => this.render());
         this.adjustCanvasSize();
         // Update all objects
-        this.gameManager.Update(this.Clock.getDelta());        
+        this.gameManager.Update(this.Clock.getDelta()); 
     }    
 }

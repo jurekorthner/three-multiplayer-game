@@ -1,16 +1,15 @@
 import GameObject from "../base/gameObject";
 import {
     BoxGeometry,
-    BufferGeometry,
-    Euler,
+    BufferGeometry,    
+    Euler,    
     Material,
     Mesh,
     MeshBasicMaterial,
     PerspectiveCamera,
-    TubeGeometry,
+    Quaternion,
     Vector3,
 } from "three";
-import Component from "../base/component";
 
 export default class Player extends GameObject {
     private meshGeometry: BufferGeometry = new BoxGeometry(1, 1, 1);
@@ -23,7 +22,7 @@ export default class Player extends GameObject {
 
     private camDst: number = 5;
 
-    private nextPos: number = 0;
+    private velocity: Vector3 = new Vector3(0, 0, 0);
 
     public camera: PerspectiveCamera = new PerspectiveCamera(
         45,
@@ -34,38 +33,45 @@ export default class Player extends GameObject {
     
     onBegin(): void {
         this.add(this.mesh);
-        this.add(this.camera);
+        this.add(this.camera);        
     }
 
     onUpdate(delta: number): void {
+        console.log(this.velocity.z);
+
+        this.position.add(this.velocity);        
         //this.rotateX(0.02);
-        //this.position.setX(this.nextPos);
+        //this.position.setX(this.velocity);
     }
 
-    onButtonDown(keyCode: string) {
+    onButtonDown(keyCode: string): void {
+        switch (keyCode) {
+            case "u":
+                this.camera.lookAt(0, 0, 0);
+                break;
+            case "w":
+                this.velocity.z = -0.1;
+                break;
+            case "s":
+                this.velocity.z = 0.1;
+                break;    
+            default:
+        }
+    }
+
+    onButtonUp(keyCode: string): void {
         switch (keyCode) {
             case "w":
-                this.nextPos = 1;
+                this.velocity.z = 0;
             case "s":
-                this.nextPos = -1;
+                this.velocity.z = 0;
             default:
                 return;
         }
     }
 
-    onButtonUp(keyCode: string) {
-        switch (keyCode) {
-            case "w":
-                this.nextPos = 0;
-            case "s":
-                this.nextPos = 0;
-            default:
-                return;
-        }
-    }
-
-    onMouseMove(x: number, y: number): void {
-        console.log(this.camera.rotation);
-        //this.camera.rotateOnWorldAxis(new Vector3(-1, 0, 0), y*0.001);
+    onMouseMove(x: number, y: number): void {    
+        this.camera.rotateX(-y * 0.001)
+        this.camera.rotateY(x* 0.001);
     }
 }

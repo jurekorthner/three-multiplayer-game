@@ -7,7 +7,7 @@ export class GroundPlane extends GameObject {
     private mesh = new Mesh(this.meshGeometry, this.meshMaterial);    
 
     onBegin(): void {
-        this.mesh.rotation.set(-90, 0, 0);
+        this.mesh.rotation.set(-90, 0, 0);        
         this.add(this.mesh);
     }
 }
